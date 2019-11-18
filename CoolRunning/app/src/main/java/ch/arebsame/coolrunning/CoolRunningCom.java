@@ -11,43 +11,43 @@ public class CoolRunningCom {
     private static RunningMode mode;
     private static State state;
 
-    public static float getSpeed() {
+    public synchronized static float getSpeed() {
         return speed;
     }
 
-    public static void setSpeed(float speed) {
+    public synchronized static void setSpeed(float speed) {
         CoolRunningCom.speed = speed;
     }
 
-    public static float getTargetSpeed() {
+    public synchronized static float getTargetSpeed() {
         return targetSpeed;
     }
 
-    public static void setTargetSpeed(float targetSpeed) {
+    public synchronized static void setTargetSpeed(float targetSpeed) {
         CoolRunningCom.targetSpeed = targetSpeed;
     }
 
-    public static long getRunningTimeMs() {
+    public synchronized static long getRunningTimeMs() {
         return runningTimeMs;
     }
 
-    public static void setRunningTimeMs(long runningTimeMs) {
+    public synchronized static void setRunningTimeMs(long runningTimeMs) {
         CoolRunningCom.runningTimeMs = runningTimeMs;
     }
 
-    public static RunningMode getMode() {
+    public synchronized static RunningMode getMode() {
         return mode;
     }
 
-    public static void setMode(RunningMode mode) {
+    public synchronized static void setMode(RunningMode mode) {
         CoolRunningCom.mode = mode;
     }
 
-    public static State getState() {
+    public synchronized static State getState() {
         return state;
     }
 
-    public static void setState(State state) {
+    public synchronized static void setState(State state) {
         CoolRunningCom.state = state;
     }
 }
