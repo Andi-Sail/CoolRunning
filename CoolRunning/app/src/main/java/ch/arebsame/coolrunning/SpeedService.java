@@ -52,6 +52,7 @@ public class SpeedService extends Service {
                 public void onLocationChanged(Location location) {
                     if (location != null) {
                         speed = location.getSpeed();
+                        CoolRunningCom.setSpeed(speed);
                     }
                 }
 
