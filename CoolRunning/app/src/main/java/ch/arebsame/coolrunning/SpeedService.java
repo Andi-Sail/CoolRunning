@@ -39,6 +39,10 @@ public class SpeedService extends Service {
 
     @Override
     public void onCreate() {
+
+        // https://androidwave.com/foreground-service-android-example
+        // https://developer.android.com/about/versions/oreo/background-location-limits
+
         String input = "foo";
         createNotificationChannel();
         Intent notificationIntent = new Intent(this, MainActivity.class);
