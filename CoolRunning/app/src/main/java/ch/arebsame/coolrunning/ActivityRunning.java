@@ -1,10 +1,42 @@
 package ch.arebsame.coolrunning;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class ActivityRunning extends AppCompatActivity {
+
+    private Handler handler = new Handler() {
+
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            ((TextView) findViewById(R.id.speedValue)).setText(String.format("%.02f", CoolRunningCom.getSpeed()));
+            ((TextView) findViewById(R.id.targetValue)).setText(String.format("%.02f", CoolRunningCom.getTargetSpeed()));
+
+            TextView result = (TextView) findViewById(R.id.resultVariable);
+            Log.d("current speed", String.format("%.02f", CoolRunningCom.getSpeed()));
+            if (CoolRunningCom.getRunningError() == RunningError.tooFast) {
+                result.setText("too fast --> slow down");
+                result.setBackgroundColor(getResources().getColor(R.color.runningTooFast));
+                Log.d("speed", "too fast --> slow down");
+            } else if (CoolRunningCom.getRunningError() == RunningError.tooSlow) {
+                result.setText("too slow --> speed up");
+                result.setBackgroundColor(getResources().getColor(R.color.runningTooSlow));
+                Log.d("speed", "too slow --> speed up");
+            } else {
+                result.setText("correct --> keep going");
+                Log.d("speed", "correct --> keep going");
+                result.setBackgroundColor(getResources().getColor(R.color.runningGood));
+            }
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -12,6 +44,23 @@ public class ActivityRunning extends AppCompatActivity {
         setContentView(R.layout.activity_running);
 
         setTitle("CNIT355 Running App");
+
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    handler.sendEmptyMessage(0);
+
+                    // pass some time
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        t.start();
 
     }
 }
