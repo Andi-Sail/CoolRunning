@@ -67,6 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#646464"
+            android:onClick="onStopRunningClick"
             android:text="    Stop Running    "
             android:textColor="#FFFFFF" />
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+<!--
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.843" />
-
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:layout_weight="1"
-                android:text="speed km/h" />
+                android:text="speed m/s" />
 
         </LinearLayout>
 
@@ -167,10 +167,11 @@
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
-            android:textSize="18sp"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:text="Start Running!" />
+            android:layout_gravity="center"
+            android:onClick="onStartRunningClick"
+            android:text="Start Running!"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
