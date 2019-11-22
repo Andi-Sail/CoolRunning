@@ -12,18 +12,12 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
 public class SpeedService extends Service {
-    public SpeedService() {
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-
-/*public class SpeedService extends Service {
 
     float speed = 0;
     protected LocationManager locationManager;
@@ -109,13 +103,9 @@ public class SpeedService extends Service {
         locationManager.removeUpdates(listener);
     }
 
-        @Override
-        public IBinder onBind (Intent intent){
-
-            // TODO: Return the communication channel to the service.
-            throw new UnsupportedOperationException("Not yet implemented");
-        }*/
+    @Override
+    public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }
-
