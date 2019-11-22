@@ -115,4 +115,8 @@ public class MainActivity extends AppCompatActivity
         };
         t.start();
     }
+
+    public void onStartRunningClick(View vies) {
+
+    }
 }
