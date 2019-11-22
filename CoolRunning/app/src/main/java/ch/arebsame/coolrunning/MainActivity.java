@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity
 
         // TODO: only start on start button with Running Activity Intent
         // the following is only temporary
+        /*
         Intent speedServiceIntent = new Intent(this, SpeedService.class);
         startService(speedServiceIntent);
 
@@ -159,6 +160,8 @@ public class MainActivity extends AppCompatActivity
             }
         };
         t.start();
+
+         */
     }
 
     private void updateStartingSpeed(int progress) {
