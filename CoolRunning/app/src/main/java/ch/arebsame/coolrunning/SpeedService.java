@@ -2,6 +2,10 @@ package ch.arebsame.coolrunning;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -10,12 +14,15 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 
 public class SpeedService extends Service {
 
@@ -32,6 +39,21 @@ public class SpeedService extends Service {
 
     @Override
     public void onCreate() {
+        String input = "foo";
+        createNotificationChannel();
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                0, notificationIntent, 0);
+        Notification notification = new NotificationCompat.Builder(this, "Speed Service")
+                .setContentTitle("Speed Service")
+                //.setContentText(input)
+                //.setSmallIcon(R.drawable.ic_stat_name)
+                .setContentIntent(pendingIntent)
+                .build();
+
+        startForeground(1, notification);
+
+
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         LocationProvider provider = locationManager.getProvider(LocationManager.GPS_PROVIDER);
         // Retrieve a list of location providers that have fine accuracy, no monetary cost, etc
@@ -50,9 +72,12 @@ public class SpeedService extends Service {
             listener = new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
-                    if (location != null) {
+                    if (location != null && location.hasSpeed()) {
                         speed = location.getSpeed();
                         CoolRunningCom.setSpeed(speed);
+                    }
+                    else {
+                        Log.w("location" ,"no speed in location");
                     }
                 }
 
@@ -72,28 +97,23 @@ public class SpeedService extends Service {
                 }
             };
 
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) this.getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                } else {
-                    ActivityCompat.requestPermissions((Activity) this.getBaseContext(),
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                            1);
-                }
-            }
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) this.getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION)) {
-
-                } else {
-                    ActivityCompat.requestPermissions((Activity) this.getBaseContext(),
-                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                            1);
-                }
-            }
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, listener);
         }
         else {
             Toast.makeText(getBaseContext() ,"GPS is not enabled, please enable and try again", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel serviceChannel = new NotificationChannel(
+                    "Speed Service",
+                    "Speed Service",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(serviceChannel);
         }
     }
 
