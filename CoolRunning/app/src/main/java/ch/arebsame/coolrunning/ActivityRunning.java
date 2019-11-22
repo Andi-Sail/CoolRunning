@@ -3,14 +3,20 @@ package ch.arebsame.coolrunning;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class ActivityRunning extends AppCompatActivity {
+
+    Intent speedServiceIntent;
+    Intent speedMonitorServiceIntent;
+    boolean isRunning = false;
 
     private Handler handler = new Handler() {
 
@@ -45,10 +51,18 @@ public class ActivityRunning extends AppCompatActivity {
 
         setTitle("CNIT355 Running App");
 
+        speedServiceIntent = new Intent(this, SpeedService.class);
+        startService(speedServiceIntent);
+
+        speedMonitorServiceIntent = new Intent(this, SpeedMonitorService.class);
+        startService(speedMonitorServiceIntent);
+
+        isRunning = true;
+
         Thread t = new Thread() {
             @Override
             public void run() {
-                while (true) {
+                while (isRunning) {
                     handler.sendEmptyMessage(0);
 
                     // pass some time
@@ -61,6 +75,18 @@ public class ActivityRunning extends AppCompatActivity {
             }
         };
         t.start();
+    }
 
+    void onStopRunningClick(View v) {
+        isRunning = false;
+        stopService(speedServiceIntent);
+        stopService(speedMonitorServiceIntent);
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.onStopRunningClick(null);
     }
 }
