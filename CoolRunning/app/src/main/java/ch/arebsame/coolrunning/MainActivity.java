@@ -171,6 +171,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onStartRunningClick(View vies) {
+        Intent speedServiceIntent = new Intent(this, SpeedService.class);
+        startService(speedServiceIntent);
+
+        Intent speedMonitorServiceIntent = new Intent(this, SpeedMonitorService.class);
+        startService(speedMonitorServiceIntent);
 
     }
 }
