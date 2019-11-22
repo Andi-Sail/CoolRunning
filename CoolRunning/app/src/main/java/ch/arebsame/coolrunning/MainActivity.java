@@ -177,5 +177,7 @@ public class MainActivity extends AppCompatActivity
         Intent speedMonitorServiceIntent = new Intent(this, SpeedMonitorService.class);
         startService(speedMonitorServiceIntent);
 
+        Intent runningActivity = new Intent(this, ActivityRunning.class);
+        startActivity(runningActivity);
     }
 }
