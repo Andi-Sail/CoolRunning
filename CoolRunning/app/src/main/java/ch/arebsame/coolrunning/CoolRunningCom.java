@@ -26,6 +26,7 @@ public class CoolRunningCom {
     public synchronized static void setSpeed(float speed) {
         CoolRunningCom.speed = speed;
         speedDelayLine[speedDelayLineIndex] = speed;
+        speedDelayLineIndex++;
         if (speedDelayLineIndex >= speedDelayLineLength) {
             speedDelayLineIndex = 0;
         }
