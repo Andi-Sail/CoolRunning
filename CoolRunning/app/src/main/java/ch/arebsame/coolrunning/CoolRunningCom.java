@@ -7,13 +7,22 @@ package ch.arebsame.coolrunning;
 public class CoolRunningCom {
     private static float speed;
     private static float averageSpeed;
-    private static final int speedDelayLineLength = 10;
+    private static final int speedDelayLineLength = 30;
     private static int speedDelayLineIndex = 0;
     private static float speedDelayLine[] = new float[speedDelayLineLength];
     private static float targetSpeed;
     private static long runningTimeMs;
     private static RunningMode mode;
     private static State state;
+    private static RunningError runningError;
+
+    public static RunningError getRunningError() {
+        return runningError;
+    }
+
+    public synchronized static void setRunningError(RunningError runningError) {
+        CoolRunningCom.runningError = runningError;
+    }
 
     public static float getAverageSpeed() {
         return averageSpeed;
