@@ -3,4 +3,7 @@
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="runningGood">#216D06</color>
+    <color name="runningTooFast">#4596DD</color>
+    <color name="runningTooSlow">#DF0000</color>
 </resources>
