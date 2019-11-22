@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
 
 public class MainActivity extends AppCompatActivity
 {
@@ -67,5 +72,13 @@ public class MainActivity extends AppCompatActivity
 
         //currentSpeed.setText("10.00");
         //targetSpeed.setText("5.00");
+
+        setTitle("CNIT355 Running App");
+
+        Spinner dropdown = findViewById(R.id.programSpinner);
+        String[] items = new String[]{"Interval", "Increasing Speed", "Constant Speed", "Random Speed"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter);
+
     }
 }
