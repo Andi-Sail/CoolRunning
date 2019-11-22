@@ -17,8 +17,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import android.widget.ArrayAdapter;
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity
     EditText currentSpeed;
     TextView status;
     Button button;
+    Spinner dropdown;
+    SeekBar difficultyBar;
 
     private Handler handler = new Handler() {
 
@@ -63,11 +67,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         setTitle("CNIT355 Running App");
 
-        Spinner dropdown = findViewById(R.id.programSpinner);
-        String[] items = new String[]{"Interval", "Increasing Speed", "Constant Speed", "Random Speed"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        dropdown.setAdapter(adapter);
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) this, Manifest.permission.ACCESS_FINE_LOCATION)) {
 
@@ -86,6 +85,52 @@ public class MainActivity extends AppCompatActivity
                         1);
             }
         }
+
+        difficultyBar = (SeekBar) findViewById(R.id.difficultlyBar);
+        difficultyBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    updateStartingSpeed(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        dropdown = findViewById(R.id.programSpinner);
+        RunningMode[] modes = RunningMode.values();
+        String[] modesNames = new String[modes.length];
+        for (int i = 0; i < modes.length; i++) {
+            modesNames[i] = modes[i].name().replace('_', ' ');
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, modesNames);
+        dropdown.setAdapter(adapter);
+        // set up listener for selection spinner
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String selectedModeString = (String) dropdown.getSelectedItem();
+                RunningMode selectedMode = RunningMode.valueOf(selectedModeString.replace(' ', '_'));
+                CoolRunningCom.setMode(selectedMode);
+                updateStartingSpeed(difficultyBar.getProgress());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        updateStartingSpeed(difficultyBar.getProgress());
 
         // TODO: only start on start button with Running Activity Intent
         // the following is only temporary
@@ -114,6 +159,12 @@ public class MainActivity extends AppCompatActivity
             }
         };
         t.start();
+    }
+
+    private void updateStartingSpeed(int progress) {
+        float startingSpeed = progress+1;
+        CoolRunningCom.setTargetSpeed(startingSpeed);
+        ((TextView)findViewById(R.id.speedVariable)).setText(String.format("%.02f", startingSpeed));
     }
 
     public void onStartRunningClick(View vies) {
