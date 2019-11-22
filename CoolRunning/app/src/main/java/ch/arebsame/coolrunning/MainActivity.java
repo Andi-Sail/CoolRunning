@@ -131,37 +131,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
         updateStartingSpeed(difficultyBar.getProgress());
-
-        // TODO: only start on start button with Running Activity Intent
-        // the following is only temporary
-        /*
-        Intent speedServiceIntent = new Intent(this, SpeedService.class);
-        startService(speedServiceIntent);
-
-        Intent speedMonitorServiceIntent = new Intent(this, SpeedMonitorService.class);
-        startService(speedMonitorServiceIntent);
-
-        CoolRunningCom.setMode(RunningMode.Constant_Speed);
-        CoolRunningCom.setTargetSpeed(3);
-
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                while (true) {
-                    handler.sendEmptyMessage(0);
-
-                    // pass some time
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        t.start();
-
-         */
     }
 
     private void updateStartingSpeed(int progress) {
