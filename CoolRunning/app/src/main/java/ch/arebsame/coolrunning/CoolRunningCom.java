@@ -15,6 +15,8 @@ public class CoolRunningCom {
     private static RunningMode mode;
     private static State state;
     private static RunningError runningError;
+    private static float score;
+
 
     public static RunningError getRunningError() {
         return runningError;
@@ -76,5 +78,21 @@ public class CoolRunningCom {
 
     public synchronized static void setState(State state) {
         CoolRunningCom.state = state;
+    }
+
+    public synchronized static float getScore() {
+        return score;
+    }
+
+    public synchronized static void setScore(float score) {
+        if (score < 0) {
+            CoolRunningCom.score = 0;
+        }
+        else if (score > 100) {
+            CoolRunningCom.score = 100;
+        }
+        else {
+            CoolRunningCom.score = score;
+        }
     }
 }

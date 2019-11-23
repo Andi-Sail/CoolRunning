@@ -44,10 +44,10 @@ public class SpeedMonitorService extends Service {
                     //monitor.compareSpeed(CoolRunningCom.getAverageSpeed(), CoolRunningCom.getTargetSpeed());
                     monitor.compareSpeed(CoolRunningCom.getSpeed(), CoolRunningCom.getTargetSpeed());
 
-                    if (monitor.getResult() <= -1.0f) {
+                    if (monitor.getRunningError() == RunningError.tooSlow) {
                         speedUpMusic.start();
                         CoolRunningCom.setRunningError(RunningError.tooSlow);
-                    } else if (monitor.getResult() >= 1.0f) {
+                    } else if (monitor.getRunningError() == RunningError.tooFast) {
                         slowDownMusic.start();
                         CoolRunningCom.setRunningError(RunningError.tooFast);
                     } else {
@@ -75,6 +75,7 @@ public class SpeedMonitorService extends Service {
         super.onDestroy();
         this.isRunning = false;
         this.targetSpeedUpdater.Stop();
+        CoolRunningCom.setScore(monitor.getCurrentScore());
     }
 
     @Override
