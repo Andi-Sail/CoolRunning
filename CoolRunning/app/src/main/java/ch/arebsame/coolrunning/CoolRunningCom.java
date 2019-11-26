@@ -23,7 +23,7 @@ public class CoolRunningCom {
     private static float score;
     private static Instant startTime;
     private static Duration runningTime;
-    final static DateFormat timeFormat = new SimpleDateFormat( "h:mm:ss") ;
+    final static DateFormat timeFormat = new SimpleDateFormat( "mm:ss") ;
 
 
     public static RunningError getRunningError() {
@@ -101,16 +101,25 @@ public class CoolRunningCom {
     }
 
     public synchronized static Duration updateRunningTime() {
+        if (CoolRunningCom.startTime == null) {
+            CoolRunningCom.setStartTimeNow();
+        }
         CoolRunningCom.runningTime = Duration.between(CoolRunningCom.startTime, Instant.now());
         return CoolRunningCom.runningTime;
     }
 
     public static Duration getRunningTime() {
-        return CoolRunningCom.runningTime;
+        if (CoolRunningCom.runningTime != null) {
+            return CoolRunningCom.runningTime;
+        }
+        return Duration.ZERO;
     }
 
     public static long getRunningTimeMillis() {
-        return CoolRunningCom.runningTime.toMillis();
+        if (CoolRunningCom.runningTime != null) {
+            return CoolRunningCom.runningTime.toMillis();
+        }
+        return 0;
     }
 
     public static String getRunningTimeFormated() {

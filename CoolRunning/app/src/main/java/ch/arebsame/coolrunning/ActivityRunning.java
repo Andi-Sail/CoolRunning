@@ -22,6 +22,9 @@ public class ActivityRunning extends AppCompatActivity {
 
         @Override
         public void handleMessage(@NonNull Message msg) {
+            CoolRunningCom.updateRunningTime();
+            ((TextView) findViewById(R.id.runningValue)).setText(CoolRunningCom.getRunningTimeFormated());
+
             ((TextView) findViewById(R.id.speedValue)).setText(String.format("%.02f", CoolRunningCom.getSpeed()));
             ((TextView) findViewById(R.id.targetValue)).setText(String.format("%.02f", CoolRunningCom.getTargetSpeed()));
 
@@ -57,6 +60,8 @@ public class ActivityRunning extends AppCompatActivity {
         speedMonitorServiceIntent = new Intent(this, SpeedMonitorService.class);
         startService(speedMonitorServiceIntent);
 
+        // start timer
+        CoolRunningCom.setStartTimeNow();
         isRunning = true;
 
         Thread t = new Thread() {
