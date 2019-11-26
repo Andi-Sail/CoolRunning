@@ -1,5 +1,11 @@
 package ch.arebsame.coolrunning;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Date;
+
 /**
  * shared data across the application
  * to communicate
@@ -11,11 +17,13 @@ public class CoolRunningCom {
     private static int speedDelayLineIndex = 0;
     private static float speedDelayLine[] = new float[speedDelayLineLength];
     private static float targetSpeed;
-    private static long runningTimeMs;
     private static RunningMode mode;
     private static State state;
     private static RunningError runningError;
     private static float score;
+    private static Instant startTime;
+    private static Duration runningTime;
+    final static DateFormat timeFormat = new SimpleDateFormat( "h:mm:ss") ;
 
 
     public static RunningError getRunningError() {
@@ -56,14 +64,6 @@ public class CoolRunningCom {
         CoolRunningCom.targetSpeed = targetSpeed;
     }
 
-    public synchronized static long getRunningTimeMs() {
-        return runningTimeMs;
-    }
-
-    public synchronized static void setRunningTimeMs(long runningTimeMs) {
-        CoolRunningCom.runningTimeMs = runningTimeMs;
-    }
-
     public synchronized static RunningMode getMode() {
         return mode;
     }
@@ -94,5 +94,29 @@ public class CoolRunningCom {
         else {
             CoolRunningCom.score = score;
         }
+    }
+
+    public synchronized static void setStartTimeNow() {
+        CoolRunningCom.startTime = Instant.now();
+    }
+
+    public synchronized static Duration updateRunningTime() {
+        CoolRunningCom.runningTime = Duration.between(CoolRunningCom.startTime, Instant.now());
+        return CoolRunningCom.runningTime;
+    }
+
+    public static Duration getRunningTime() {
+        return CoolRunningCom.runningTime;
+    }
+
+    public static long getRunningTimeMillis() {
+        return CoolRunningCom.runningTime.toMillis();
+    }
+
+    public static String getRunningTimeFormated() {
+        long currentMillis = CoolRunningCom.getRunningTimeMillis();
+        Date d = new Date(currentMillis);
+        String timeString = timeFormat.format(d);
+        return timeString;
     }
 }
