@@ -73,12 +73,14 @@ public class SpeedService extends Service {
         final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         if (gpsEnabled && providerName != null) {
+            CoolRunningCom.initPosList();
             listener = new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
                     if (location != null && location.hasSpeed()) {
                         speed = location.getSpeed();
                         CoolRunningCom.setSpeed(speed);
+                        CoolRunningCom.addPosition(location.getLatitude(), location.getLongitude());
                     }
                     else {
                         Log.w("location" ,"no speed in location");
