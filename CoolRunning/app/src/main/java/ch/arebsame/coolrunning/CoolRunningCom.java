@@ -1,10 +1,14 @@
 package ch.arebsame.coolrunning;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * shared data across the application
@@ -24,6 +28,7 @@ public class CoolRunningCom {
     private static Instant startTime;
     private static Duration runningTime;
     final static DateFormat timeFormat = new SimpleDateFormat( "mm:ss") ;
+    private static LinkedList<LatLng> positionList;
 
 
     public static RunningError getRunningError() {
@@ -127,5 +132,23 @@ public class CoolRunningCom {
         Date d = new Date(currentMillis);
         String timeString = timeFormat.format(d);
         return timeString;
+    }
+
+    public synchronized static void initPosList() {
+        CoolRunningCom.positionList = new LinkedList<LatLng>();
+    }
+
+    public synchronized static void addPosition(LatLng pos) {
+        if (CoolRunningCom.positionList != null && pos != null) {
+            CoolRunningCom.positionList.add(pos);
+        }
+    }
+
+    public synchronized static void addPosition(double lat, double lng) {
+        CoolRunningCom.addPosition(new LatLng(lat, lng));
+    }
+
+    public static LinkedList<LatLng> getPositionList() {
+        return CoolRunningCom.positionList;
     }
 }
