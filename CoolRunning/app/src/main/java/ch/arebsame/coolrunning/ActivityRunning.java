@@ -82,11 +82,21 @@ public class ActivityRunning extends AppCompatActivity {
         t.start();
     }
 
-    void onStopRunningClick(View v) {
-        isRunning = false;
-        stopService(speedServiceIntent);
-        stopService(speedMonitorServiceIntent);
-        finish();
+    public void onStopRunningClick(View v) {
+        if (isRunning) {
+            isRunning = false;
+            stopService(speedServiceIntent);
+            stopService(speedMonitorServiceIntent);
+            finish();
+            // TODO: start result Activity --> probably use MainActivity as context (with: this.getApplicationContext()) so that 'back' will go back to main_actiity
+            // something like this
+            //Intent resultActivity = new Intent(this.getApplicationContext(), ActivityResults.class);
+            //startActivity(resultActivity);
+
+            // TODO: open from result activity on press of a button --> probably use ActivityResult as context (with: this) so that 'back' will go back to resylt_actiity
+            Intent mapActivity = new Intent(this.getApplicationContext(), MapsActivity.class);
+            startActivity(mapActivity);
+        }
     }
 
     @Override
