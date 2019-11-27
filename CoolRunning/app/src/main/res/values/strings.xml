@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CoolRunning</string>
+    <string name="title_activity_maps">Your track</string>
 </resources>
