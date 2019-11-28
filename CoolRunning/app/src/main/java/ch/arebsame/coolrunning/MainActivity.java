@@ -31,12 +31,14 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity
 {
+    /*
     SpeedMonitor monitor;
     MediaPlayer music;
     EditText targetSpeed;
     EditText currentSpeed;
     TextView status;
     Button button;
+     */
     Spinner dropdown;
     SeekBar difficultyBar;
 
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity
         ((TextView)findViewById(R.id.speedVariable)).setText(String.format("%.02f", startingSpeed));
     }
 
-    public void onStartRunningClick(View vies) {
+    public void onStartRunningClick(View view) {
         Intent runningActivity = new Intent(this, ActivityRunning.class);
         startActivity(runningActivity);
     }

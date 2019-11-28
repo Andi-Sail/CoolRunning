@@ -2,7 +2,9 @@ package ch.arebsame.coolrunning;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -68,5 +70,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
+    }
+
+    public void onBackClick(View view)
+    {
+        Intent resultsActivity = new Intent(this, ActivityResults.class);
+        startActivity(resultsActivity);
     }
 }
