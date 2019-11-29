@@ -29,7 +29,24 @@ public class CoolRunningCom {
     private static Duration runningTime;
     final static DateFormat timeFormat = new SimpleDateFormat( "mm:ss") ;
     private static LinkedList<LatLng> positionList;
+    private static String runName = "CoolRunningTrack";
+    private static Boolean saveRun = false;
 
+    public static Boolean getSaveRun() {
+        return saveRun;
+    }
+
+    public static void setSaveRun(Boolean saveRun) {
+        CoolRunningCom.saveRun = saveRun;
+    }
+
+    public static String getRunName() {
+        return runName;
+    }
+
+    public static void setRunName(String runName) {
+        CoolRunningCom.runName = runName;
+    }
 
     public static RunningError getRunningError() {
         return runningError;

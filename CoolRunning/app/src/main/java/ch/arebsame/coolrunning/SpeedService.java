@@ -34,7 +34,12 @@ public class SpeedService extends Service {
     // The minimum time between updates in milliseconds
     private static final long MIN_TIME_BW_UPDATES = 100;
 
+    private GPXGenerator gpxGenerator;
+
     public SpeedService() {
+        if (CoolRunningCom.getSaveRun()) {
+            this.gpxGenerator = new GPXGenerator(CoolRunningCom.getRunName());
+        }
     }
 
     @Override
@@ -81,6 +86,9 @@ public class SpeedService extends Service {
                         speed = location.getSpeed();
                         CoolRunningCom.setSpeed(speed);
                         CoolRunningCom.addPosition(location.getLatitude(), location.getLongitude());
+                        if (CoolRunningCom.getSaveRun() && gpxGenerator != null) {
+                            gpxGenerator.addPoint(location);
+                        }
                     }
                     else {
                         Log.w("location" ,"no speed in location");
@@ -127,6 +135,9 @@ public class SpeedService extends Service {
     public void onDestroy() {
         super.onDestroy();
         locationManager.removeUpdates(listener);
+        if (CoolRunningCom.getSaveRun() && gpxGenerator != null) {
+            gpxGenerator.writeToFile();
+        }
     }
 
     @Override
