@@ -6,64 +6,6 @@
     android:layout_height="match_parent"
     android:screenOrientation="portrait"
     tools:context=".MainActivity">
-<!--
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello Cool Running!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.226" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="131dp"
-        android:layout_height="42dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.648" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="129dp"
-        android:layout_height="41dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.552" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="76dp"
-        android:layout_height="36dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.728" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="COMPARE SPEED"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.843" />
--->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -77,35 +19,35 @@
             android:id="@+id/programText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_marginBottom="15sp"
-            android:text="Select Program" />
+            android:text="Select Program"
+            android:textSize="22sp" />
 
         <Spinner
             android:id="@+id/programSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:layout_marginBottom="40sp"
             android:spinnerMode="dropdown"
-            android:layout_marginBottom="40sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/difficultyText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_marginBottom="40sp"
-            android:text="Difficulty" />
+            android:text="Difficulty"
+            android:textSize="22sp" />
 
         <SeekBar
             android:id="@+id/difficultlyBar"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="50sp"
             android:max="10"
             android:progress="3"
-            android:progressTint="#0012E3EB"
-            android:layout_marginBottom="80sp"/>
+            android:progressTint="#0012E3EB" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -118,16 +60,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="18sp"
-                android:text="Starting Speed: " />
+                android:text="Starting Speed: "
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/speedVariable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
                 android:layout_weight="1"
-                android:text="speed m/s" />
+                android:text="speed m/s"
+                android:textSize="22sp" />
 
         </LinearLayout>
 
@@ -135,9 +77,9 @@
             android:id="@+id/trackSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="40sp"
             android:text="Safe Track    "
-            android:textSize="18sp"
-            android:layout_marginBottom="40sp"/>
+            android:textSize="22sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -172,7 +114,7 @@
             android:layout_gravity="center"
             android:onClick="onStartRunningClick"
             android:text="Start Running!"
-            android:textSize="18sp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
 
