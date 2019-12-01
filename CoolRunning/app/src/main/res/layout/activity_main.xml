@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15sp"
             android:text="Select Program"
+            android:textColor="@color/colorPrimary"
             android:textSize="22sp" />
 
         <Spinner
@@ -37,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="40sp"
             android:text="Difficulty"
+            android:textColor="@color/colorPrimary"
             android:textSize="22sp" />
 
         <SeekBar
@@ -61,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Starting Speed: "
+                android:textColor="@color/colorPrimary"
                 android:textSize="22sp" />
 
             <TextView
@@ -91,9 +94,10 @@
                 android:id="@+id/trackNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
                 android:layout_weight="1"
-                android:text="Track Name: " />
+                android:text="Track Name: "
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/enteredNameEdit"
