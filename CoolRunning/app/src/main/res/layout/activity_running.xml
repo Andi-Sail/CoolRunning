@@ -5,72 +5,103 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:screenOrientation="portrait"
+    android:layout_marginLeft="15sp"
+    android:layout_marginRight="15sp"
+    android:layout_marginTop="25sp"
+    android:layout_marginBottom="25sp"
     tools:context=".ActivityRunning">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/runningText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Running Time"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/stopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="44dp"
+        android:background="#646464"
+        android:onClick="onStopRunningClick"
+        android:text="    Stop Running    "
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultVariable" />
+
+    <TextView
+        android:id="@+id/targetText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp"
-        android:layout_marginTop="25sp"
-        android:layout_marginBottom="25sp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Target Speed"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/speedValue"
+        tools:layout_editor_absoluteX="0dp" />
 
-        <TextView
-            android:id="@+id/runningText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Running Time" />
+    <TextView
+        android:id="@+id/targetValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_border"
+        android:padding="10sp"
+        android:text="target speed value"
+        android:textColor="@color/colorPrimary"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@+id/targetText"
+        tools:layout_editor_absoluteX="-16dp" />
 
-        <TextView
-            android:id="@+id/runningValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/my_border"
-            android:text="run time value" />
+    <TextView
+        android:id="@+id/runningValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_border"
+        android:padding="10sp"
+        android:text="run time value"
+        android:textColor="@color/colorPrimary"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@+id/runningText"
+        tools:layout_editor_absoluteX="15dp" />
 
-        <TextView
-            android:id="@+id/speedText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Current Speed" />
+    <TextView
+        android:id="@+id/speedValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_border"
+        android:padding="10sp"
+        android:text="current speed value"
+        android:textColor="@color/colorPrimary"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/speedText" />
 
-        <TextView
-            android:id="@+id/speedValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/my_border"
-            android:text="current speed value" />
+    <TextView
+        android:id="@+id/speedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Current Speed"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/runningValue" />
 
-        <TextView
-            android:id="@+id/targetText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Target Speed" />
+    <TextView
+        android:id="@+id/resultVariable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:gravity="center"
+        android:padding="10sp"
+        android:text="Result"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/targetValue"
+        tools:layout_editor_absoluteX="0dp" />
 
-        <TextView
-            android:id="@+id/targetValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/my_border"
-            android:text="target speed value" />
-
-        <TextView
-            android:id="@+id/resultVariable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Result" />
-
-        <Button
-            android:id="@+id/stopButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#646464"
-            android:onClick="onStopRunningClick"
-            android:text="    Stop Running    "
-            android:textColor="#FFFFFF" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
