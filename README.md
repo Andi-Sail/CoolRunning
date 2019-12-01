@@ -1,5 +1,33 @@
 # CoolRunning
-Term Project for CNIT Fall-2019-CNIT-35500-001
+This readme describes the Term Project for CNIT Fall-2019-CNIT-35500-001.
+
+## Brief Description
+Cool Running is a speed tracking mobile application for android devices that tracks the speed of the user while either walking, running, or riding on a vehicle. If the runner’s speed is out of the selected range of the speed, then the program will send the alarm to the runner indicating the status.
+
+### Running Modes
+The following four running programs will be implemented:
+* Intervall
+  * The target speed alternates between fast and slow at a constant time interval.
+* Increasing speed
+  * The target speed begins at a start value and always increase after a time interval. The goal for the user is to keep up as long as possible.
+* Constant speed
+  * The target speed is set to a constant value and stays on that value for the full run.
+* Random speed
+  * The target speed changes at a constant time interval to a new random speed. That way the user can practice to adapt to different speeds.
+
+For each program the difficulty level determines the various target speed and time intervals. These numbers will be evaluated during testing to see in a real life scenario what numbers will make the most sense.
+
+# How to compile and run
+This project can be opened in Android Studio and compiled.
+
+## Google Maps API-Key
+The device for developpement and/or the key to signe the apk need to be registered for the given API key. Non Team members will need to create a new key and replace the existing one.
+
+# Implementation
+This App consists of four activities and two servies. One of the servies is run as a forground Servie.
+
+## Cross Communication
+For several threads, services and the user interface to communicate ther is the "CoolRunningCom" class. This class provides static access to all the necessary data. This data can always be accessed and is used to asynchron store and read data. To avoid reentrancy problems the data is encapsulated in static synchronized methodes.
 
 ## Source Files
 ### Activities layouts
