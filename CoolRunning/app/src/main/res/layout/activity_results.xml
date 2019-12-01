@@ -27,12 +27,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/my_border"
                 android:gravity="center"
-                android:text="Total Running TIme"
+                android:text="Total Running Time"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:background="@drawable/my_border"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/scoreText"
