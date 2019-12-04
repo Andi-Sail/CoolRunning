@@ -15,7 +15,7 @@
         android:id="@+id/runningText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Running Time"
+        android:text="@string/running_time_title"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,12 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="44dp"
-        android:background="#646464"
+        android:textSize="22sp"
         android:onClick="onStopRunningClick"
-        android:text="    Stop Running    "
-        android:textColor="#FFFFFF"
+        android:text="@string/stop_running_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultVariable" />
 
@@ -40,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Target Speed"
+        android:text="@string/target_speed_title"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/speedValue"
         tools:layout_editor_absoluteX="0dp" />
@@ -86,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Current Speed"
+        android:text="@string/current_speed_title"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/runningValue" />

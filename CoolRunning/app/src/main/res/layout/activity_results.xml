@@ -29,7 +29,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/my_border"
                 android:gravity="center"
-                android:text="Total Running Time"
+                android:text="@string/running_time_title"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Speed Score"
+                android:text="@string/speed_score_title"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -92,7 +92,7 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:onClick="onFinishClick"
-            android:text="Finish"
+            android:text="@string/finish_btn"
             android:textSize="18sp"
             android:textAlignment="center"/>
 
@@ -103,7 +103,7 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:onClick="onShowMapClick"
-            android:text="Show Map"
+            android:text="@string/show_map_btn"
             android:textSize="18sp"
             android:textAlignment="center"/>
     </LinearLayout>

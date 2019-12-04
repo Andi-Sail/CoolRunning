@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">CoolRunning</string>
     <string name="title_activity_maps">Your track</string>
+    <string name="program_title">Select Program</string>
+    <string name="difficulty_title">Difficulty</string>
+    <string name="starting_speed_title">Starting Speed:</string>
+    <string name="track_name_title">Track Name:</string>
+    <string name="start_running_btn">Start Running!</string>
+    <string name="save_track_title">Save Track</string>
+    <string name="track_name_hint">Enter Name</string>
+    <string name="speed_hint">speed m/s</string>
+    <string name="running_time_title">Total Running Time</string>
+    <string name="speed_score_title">Speed Score</string>
+    <string name="finish_btn">Finish</string>
+    <string name="show_map_btn">Show Map</string>
+    <string name="stop_running_btn">Stop Running</string>
+    <string name="target_speed_title">Target Speed</string>
+    <string name="current_speed_title">Current Speed</string>
+    <string name="back_btn">Back</string>
 </resources>

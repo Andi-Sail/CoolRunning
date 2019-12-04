@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:onClick="onBackClick"
-        android:text="Back" />
+        android:text="@string/back_btn" />
 
 </LinearLayout>
