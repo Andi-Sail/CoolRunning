@@ -35,38 +35,8 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity
 {
-    /*
-    SpeedMonitor monitor;
-    MediaPlayer music;
-    EditText targetSpeed;
-    EditText currentSpeed;
-    TextView status;
-    Button button;
-     */
     Spinner dropdown;
     SeekBar difficultyBar;
-
-    Boolean safeTrack = false;
-
-    private Handler handler = new Handler() {
-
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            ((TextView) findViewById(R.id.speedVariable)).setText(String.format("%.02f", CoolRunningCom.getSpeed()));
-            Log.d("current speed", String.format("%.02f", CoolRunningCom.getSpeed()));
-            if (CoolRunningCom.getRunningError() == RunningError.tooFast) {
-                ((EditText) findViewById(R.id.enteredNameEdit)).setText("too fast --> slow down");
-                Log.d("speed", "too fast --> slow down");
-            } else if (CoolRunningCom.getRunningError() == RunningError.tooSlow) {
-                ((EditText) findViewById(R.id.enteredNameEdit)).setText("too slow --> speed up");
-                Log.d("speed", "too slow --> speed up");
-            } else {
-                ((EditText) findViewById(R.id.enteredNameEdit)).setText("correct --> keep going");
-                Log.d("speed", "correct --> keep going");
-            }
-
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -115,6 +85,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
+        // init difficulty bar to update starting speed
         difficultyBar = (SeekBar) findViewById(R.id.difficultlyBar);
         difficultyBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -135,6 +106,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        // init program spinner according to available modes RunningMode enum
         dropdown = findViewById(R.id.programSpinner);
         RunningMode[] modes = RunningMode.values();
         String[] modesNames = new String[modes.length];
@@ -161,8 +133,8 @@ public class MainActivity extends AppCompatActivity
         });
         updateStartingSpeed(difficultyBar.getProgress());
 
+        // init track switch to save the track
         Switch trackSwitch = (Switch) findViewById(R.id.trackSwitch);
-
         trackSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
@@ -174,14 +146,22 @@ public class MainActivity extends AppCompatActivity
     });
     }
 
+    /**
+     * updates the starting speed on the UI
+     * @param progress the progress of the difficult bar
+     */
     private void updateStartingSpeed(int progress) {
         float startingSpeed = progress+1;
         CoolRunningCom.setTargetSpeed(startingSpeed);
         ((TextView)findViewById(R.id.speedVariable)).setText(String.format("%.02f", startingSpeed));
     }
 
+    /**
+     * the user wants to start running
+     */
     public void onStartRunningClick(View view) {
         if (CoolRunningCom.getSaveRun()) {
+            // make sure a name is entered if the track should be saved
             String trackName = ((TextView)findViewById(R.id.enteredNameEdit)).getText().toString();
             if (trackName.isEmpty())
             {
@@ -192,7 +172,7 @@ public class MainActivity extends AppCompatActivity
                 CoolRunningCom.setRunName(trackName);
             }
         }
-
+        // start running activity
         Intent runningActivity = new Intent(this, ActivityRunning.class);
         startActivity(runningActivity);
     }

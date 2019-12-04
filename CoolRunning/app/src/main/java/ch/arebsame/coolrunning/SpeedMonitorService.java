@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 
+/**
+ * This service keeps track of weather the user is wrong or correct
+ * It will play a beep if the user is wrong and set the Error in CoolRunningCom accordingly
+ */
 public class SpeedMonitorService extends Service {
     private TargetSpeedUpdater targetSpeedUpdater;
     private SpeedMonitor monitor;

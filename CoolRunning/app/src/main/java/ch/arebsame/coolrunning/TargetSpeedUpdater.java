@@ -1,5 +1,8 @@
 package ch.arebsame.coolrunning;
 
+/**
+ * This class updates the target speed periodically according to the running Mode
+ */
 public class TargetSpeedUpdater {
 
     private boolean isRunning = false;
@@ -30,6 +33,10 @@ public class TargetSpeedUpdater {
         };
     }
 
+    /**
+     * calculates the next target speed according to the running mode
+     * @return the next target speed
+     */
     private float calcNextTargetSpeed() {
 
         float nextSpeed = 0; // next Target speed in m/s
@@ -61,6 +68,10 @@ public class TargetSpeedUpdater {
         return nextSpeed;
     }
 
+    /**
+     * Calculates the time until the next update of the target speed
+     * @return a time in seconds to wait until the next update
+     */
     private long calcNextInterval() {
         long nextInterval = 1; // time to next target speed change in sec
 
@@ -83,11 +94,17 @@ public class TargetSpeedUpdater {
         return nextInterval;
     }
 
+    /**
+     * starts a thread to update the target speed
+     */
     public void Start() {
         this.isRunning = true;
         this.updaterThread.start();
     }
 
+    /**
+     * stops updating the target speed
+     */
     public void Stop() {
         this.isRunning = false;
     }

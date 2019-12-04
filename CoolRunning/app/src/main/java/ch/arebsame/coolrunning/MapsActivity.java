@@ -45,10 +45,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        //LatLng sydney = new LatLng(-34, 151);
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
@@ -56,12 +52,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // get al logged points
                 LinkedList<LatLng> posList = CoolRunningCom.getPositionList();
 
+                // make sure we have at leas 2 points to make a line
                 if (posList != null && posList.size() >= 2) {
                     // add line between all points
                     mMap.addPolyline(new PolylineOptions().addAll(posList));
 
-                    int s = posList.size();
-                    // set bounds for map to be zoomed in to relevant region
+                    // set bounds for map to be zoomed in to relevant region with all points in those bounds
                     LatLngBounds bounds = new LatLngBounds(posList.getFirst(), posList.getFirst());
                     for (LatLng p : posList) {
                         bounds = bounds.including(p);
@@ -72,9 +68,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+    /**
+     * close the map and go back to result
+     */
     public void onBackClick(View view)
     {
-        Intent resultsActivity = new Intent(this, ActivityResults.class);
-        startActivity(resultsActivity);
+        finish();
     }
 }

@@ -24,6 +24,11 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
+/**
+ * This service uses the Location API to get the speed from GPS
+ * This is run as a foreground service to ensure location updates are also provided if the app is
+ * in background
+ */
 public class SpeedService extends Service {
 
     float speed = 0;
@@ -45,26 +50,26 @@ public class SpeedService extends Service {
     @Override
     public void onCreate() {
 
-        // https://androidwave.com/foreground-service-android-example
-        // https://developer.android.com/about/versions/oreo/background-location-limits
+        /*
+        Set this service as a foreground service and show a notification
+        References on foreground service:
+        https://androidwave.com/foreground-service-android-example
+        https://developer.android.com/about/versions/oreo/background-location-limits
+         */
 
-        String input = "foo";
         createNotificationChannel();
         Intent notificationIntent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 0, notificationIntent, 0);
         Notification notification = new NotificationCompat.Builder(this, "Speed Service")
                 .setContentTitle("Speed Service")
-                //.setContentText(input)
-                //.setSmallIcon(R.drawable.ic_stat_name)
                 .setContentIntent(pendingIntent)
                 .build();
 
         startForeground(1, notification);
 
-
+        // init location manager for GPS
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-        LocationProvider provider = locationManager.getProvider(LocationManager.GPS_PROVIDER);
         // Retrieve a list of location providers that have fine accuracy, no monetary cost, etc
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -74,11 +79,12 @@ public class SpeedService extends Service {
 
         String providerName = locationManager.getBestProvider(criteria, true);
 
-
         final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         if (gpsEnabled && providerName != null) {
             CoolRunningCom.initPosList();
+
+            //create location listener and request location updates
             listener = new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {

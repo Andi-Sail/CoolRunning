@@ -32,6 +32,18 @@ public class CoolRunningCom {
     private static String runName = "CoolRunningTrack";
     private static Boolean saveRun = false;
 
+    /**
+     * resets CoolRunningCom to initial state
+     */
+    public static void reset() {
+        setSaveRun(false);
+        if (positionList != null) {
+            positionList.clear();
+        }
+        setRunName("CoolRunningTrack");
+        setScore(0);
+    }
+
     public static Boolean getSaveRun() {
         return saveRun;
     }
@@ -60,7 +72,7 @@ public class CoolRunningCom {
         return averageSpeed;
     }
 
-    public synchronized static float getSpeed() {
+    public static float getSpeed() {
         return speed;
     }
 
@@ -78,7 +90,7 @@ public class CoolRunningCom {
         averageSpeed = sum / speedDelayLineLength;
     }
 
-    public synchronized static float getTargetSpeed() {
+    public static float getTargetSpeed() {
         return targetSpeed;
     }
 
@@ -86,7 +98,7 @@ public class CoolRunningCom {
         CoolRunningCom.targetSpeed = targetSpeed;
     }
 
-    public synchronized static RunningMode getMode() {
+    public static RunningMode getMode() {
         return mode;
     }
 
@@ -94,7 +106,7 @@ public class CoolRunningCom {
         CoolRunningCom.mode = mode;
     }
 
-    public synchronized static State getState() {
+    public static State getState() {
         return state;
     }
 
@@ -102,7 +114,7 @@ public class CoolRunningCom {
         CoolRunningCom.state = state;
     }
 
-    public synchronized static float getScore() {
+    public static float getScore() {
         return score;
     }
 

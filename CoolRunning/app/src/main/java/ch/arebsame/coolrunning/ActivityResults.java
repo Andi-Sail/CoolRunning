@@ -32,12 +32,16 @@ public class ActivityResults extends AppCompatActivity
 
     public void onFinishClick(View view)
     {
-        Intent mainActivity = new Intent(this, MainActivity.class);
-        startActivity(mainActivity);
+        // reset common data
+        CoolRunningCom.reset();
+
+        // go back to start
+        finish();
     }
 
     public void onShowMapClick(View view)
     {
+        // open map
         Intent mapActivity = new Intent(this.getApplicationContext(), MapsActivity.class);
         startActivity(mapActivity);
     }
