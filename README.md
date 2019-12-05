@@ -5,7 +5,7 @@ This readme describes the Term Project for CNIT Fall-2019-CNIT-35500-001 at Purd
 This project is open source and available under MIT License at: https://github.com/Andi-Sail/CoolRunning
 
 ## Brief Description
-Cool Running is a speed tracking mobile application for android devices that tracks the speed of the user while either walking, running, or riding on a vehicle. If the runner’s speed is out of the selected range of the speed, then the program will send the alarm to the runner indicating the status.
+Cool Running is a speed tracking mobile application for android devices that tracks the speed of the user while either walking, running, or riding on a vehicle. If the runner's speed is out of the selected range of the speed, then the program will send the alarm to the runner indicating the status.
 
 ### Running Modes
 The following four running programs will be implemented:
